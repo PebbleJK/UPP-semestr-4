@@ -171,3 +171,61 @@ while (flag): print ("Given flag is really true!")
 print ("Good bye!")
 
 #Link 9
+def greetings():
+   "This is docstring of greetings function"
+   print ("Hello World")
+   return
+
+def printme( str ):
+   "This prints a passed string into this function"
+   print (str)
+   return;
+
+# Now you can call the function
+printme("I'm first call to user defined function!")
+printme("Again second call to the same function")
+
+def testfunction(arg):
+   print ("Inside function:",arg)
+   print ("ID inside the function:", id(arg))
+   arg=arg.append(100)
+   
+var=[10, 20, 30, 40]
+print ("ID before passing:", id(var))
+testfunction(var)
+print ("list after function call", var)
+
+def printme( str ):
+   "This prints a passed string into this function"
+   print (str)
+   return;
+
+printme( str = "My string")
+
+#resztę z linku o funkcjach na bieżąco sobie doczytam
+
+#Link 10
+var1 = 'Hello World!'
+var2 = "Python Programming"
+
+print ("var1[0]: ", var1[0])
+print ("var2[1:5]: ", var2[1:5])
+
+var1 = 'Hello World!'
+print ("Updated String :- ", var1[:6] + 'Python')
+
+print ("My name is %s and weight is %d kg!" % ('Zara', 21))
+
+#Link 11
+list1 = ['physics', 'chemistry', 1997, 2000];
+list2 = [1, 2, 3, 4, 5, 6, 7 ];
+print ("list1[0]: ", list1[0])
+print ("list2[1:5]: ", list2[1:5])
+
+list1 = ['physics', 'chemistry', 1997, 2000];
+print (list1)
+del list1[2];
+print ("After deleting value at index 2 : ")
+print (list1)
+
+
