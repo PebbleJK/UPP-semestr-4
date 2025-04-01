@@ -1,7 +1,29 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QGridLayout, QWidget, QStatusBar
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QGridLayout, QWidget, QStatusBar, QDialog, QDialogButtonBox, QVBoxLayout, QMessageBox
 from PySide6.QtGui import QAction, QIcon, QKeySequence
 from PySide6.QtCore import QSize, Qt
+
+# QDialog - Zadanie 3
+class CloseDialog(QDialog):
+    def __init__(self, parent = None):
+        super().__init__(parent)
+
+        self.setWindowTitle(":c")
+
+        QBtn = (
+            QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+        )
+
+        self.buttonBox = QDialogButtonBox(QBtn)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        layout = QVBoxLayout()
+        message = QLabel("Close the application?")
+        layout.addWidget(message)
+        layout.addWidget(self.buttonBox)
+        self.setLayout(layout)
+
 
 class MainWindow(QMainWindow):
   def __init__(self):
@@ -23,32 +45,32 @@ class MainWindow(QMainWindow):
 
     addOneAction = QAction(QIcon("add.png"), "+1", self)
     addOneAction.setShortcut(QKeySequence("Ctrl+A"))
-    addOneAction.setStatusTip("Dodaj 1 do wyniku")
+    addOneAction.setStatusTip("Add 1")
     addOneAction.triggered.connect(self.addOne)
 
     subOneAction = QAction(QIcon("sub.png"), "-1", self)
     subOneAction.setShortcut(QKeySequence("Ctrl+S"))
-    subOneAction.setStatusTip("Odejmij 1 od wyniku")
+    subOneAction.setStatusTip("Subtract 1")
     subOneAction.triggered.connect(self.subtractOne)
 
     multiplyAction = QAction(QIcon("multiply.png"), "x2", self)
     multiplyAction.setShortcut(QKeySequence("Ctrl+D"))
-    multiplyAction.setStatusTip("Pomnóż wynik przez 2")
+    multiplyAction.setStatusTip("Multiply by 2")
     multiplyAction.triggered.connect(self.doubleResult)
 
     halveAction = QAction(QIcon("halve.png"), "/2", self)
     halveAction.setShortcut(QKeySequence("Ctrl+H"))
-    halveAction.setStatusTip("Podziel wynik przez 2")
+    halveAction.setStatusTip("Divide by 2")
     halveAction.triggered.connect(self.halveResult)
 
     resetAction = QAction(QIcon("reset.png"), "&Reset", self)
     resetAction.setShortcut(QKeySequence("Ctrl+R"))
-    resetAction.setStatusTip("Resetuj wynik")
+    resetAction.setStatusTip("Reset the result")
     resetAction.triggered.connect(self.resetResult)
 
     closeAction = QAction(QIcon("close.png"), "&Close", self)
     closeAction.setShortcut(QKeySequence("Ctrl+Q"))
-    closeAction.setStatusTip("Zamknij aplikację")
+    closeAction.setStatusTip("Close the application")
     closeAction.triggered.connect(self.closeWindow)
 
     addSubMenu.addAction(addOneAction)
@@ -128,11 +150,20 @@ class MainWindow(QMainWindow):
     self.wynikLabel.setText(f"Wynik: {self.wynik}")
 
   def resetResult(self):
-    self.wynik = 0
-    self.wynikLabel.setText(f"Wynik: {self.wynik}")
+    # QMessageBox - Zadanie 3
+    dlg = QMessageBox(self)
+    dlg.setWindowTitle("Reset")
+    dlg.setText("Do you want to reset the result?")
+    dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    dlg.setIcon(QMessageBox.Question)
+    if dlg.exec() == QMessageBox.Yes:
+      self.wynik = 0
+      self.wynikLabel.setText(f"Wynik: {self.wynik}")    
 
   def closeWindow(self):
-    self.close()
+    dlg = CloseDialog(self)
+    if dlg.exec():
+      self.close()
 
 def main():
   app = QApplication(sys.argv)
