@@ -27,6 +27,10 @@ for wiersz in blur(obraz):
     print(wiersz)
 print()
 
+obraz2 = [[123, 42, 243],
+         [  1,  2,  3 ],
+         [200, 180, 47]]
+
 # blur Gaussa
 def blurGaussa(obraz):
     wiersze = len(obraz)
@@ -52,9 +56,13 @@ def blurGaussa(obraz):
             wynik[i][j] = suma / wagiSuma
     return wynik
 
-for wiersz in blurGaussa(obraz):
+for wiersz in blurGaussa(obraz2):
     print(wiersz)
 print()
+
+obraz3 = [[123, 42, 243],
+         [  1,  2,  3 ],
+         [200, 180, 47]]
 
 # Zamiana w obraz binarny
 def obrazBinarny(obraz, prog):
@@ -66,5 +74,5 @@ def obrazBinarny(obraz, prog):
         obraz[x][y] = 1
   return obraz
 
-for wiersz in obrazBinarny(obraz, 100):
+for wiersz in obrazBinarny(obraz3, 100):
     print(wiersz)

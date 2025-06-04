@@ -18,7 +18,7 @@ lokalizacje = [
 ]
 
 # Generujemy 30 wpisów – co kilka godzin/dni
-czas_bazowy = datetime(2024, 5, 11, 8, 0)
+czas_bazowy = datetime(2024, 6, 1, 8, 0)
 for i in range(30):
     lokalizacja = random.choice(lokalizacje)
     czas = czas_bazowy + timedelta(hours=8 * i)
@@ -35,7 +35,7 @@ def znajdz_lokalizacje_dla_dnia(lokacje_dict, data_szukana):
     return wynik
 
 # Przykład użycia
-data_testowa = datetime(2024, 5, 11)  # np. 3 maja
+data_testowa = datetime(2024, 6, 1)
 wynik = znajdz_lokalizacje_dla_dnia(odwiedziny, data_testowa)
 
 print(f"Lokalizacje odwiedzone {data_testowa.date()}:")

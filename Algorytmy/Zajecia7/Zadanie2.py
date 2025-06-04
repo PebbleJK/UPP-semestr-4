@@ -56,8 +56,8 @@ obraz = [
     [1, 0, 1, 2]
 ]
 
-#flood_fill_dfs(obraz, 0, 0, 9)
-flood_fill_bfs(obraz, 0, 3, 9)
+flood_fill_dfs(obraz, 0, 0, 9)
+#flood_fill_bfs(obraz, 0, 3, 9)
 
 for wiersz in obraz:
     print(wiersz)
